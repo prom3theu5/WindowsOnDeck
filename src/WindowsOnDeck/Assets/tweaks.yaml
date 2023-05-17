@@ -1,0 +1,69 @@
+- Name: Disable Hibernation
+  Executions:
+    - Command: PowerCfg
+      Arguments: /h off
+      UsePowershell: true
+      
+- Name: Set CPU Idle Min to 0% (Reduce fan speed)
+  Executions:
+    - Command: PowerCfg
+      Arguments: /SETACVALUEINDEX SCHEME_CURRENT SUB_PROCESSOR IDLEDISABLE 000
+      UsePowershell: true
+    - Command: PowerCfg
+      Arguments: /SETACTIVE SCHEME_CURRENT
+      UsePowershell: true
+      
+- Name: Disable Password on wake from sleep
+  Executions:
+    - Command: PowerCfg
+      Arguments: /SETACVALUEINDEX SCHEME_CURRENT SUB_NONE CONSOLELOCK 0
+      UsePowershell: true
+    - Command: PowerCfg
+      Arguments: /SETDCVALUEINDEX SCHEME_CURRENT SUB_NONE CONSOLELOCK 0
+      UsePowershell: true
+      
+- Name: Set internal Clock to UTC
+  Executions:
+    - Command: reg
+      Arguments: add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeIsUniversal /d 1 /t REG_DWORD /f
+      UsePowershell: true
+      
+- Name: Disable GameDVR
+  Executions:
+    - Command: reg
+      Arguments: add "HKEY_CURRENT_USER\System\GameConfigStore" /f /v GameDVR_Enabled /t REG_DWORD /d 0
+      UsePowershell: true
+      
+- Name: Remove OneDrive
+  IsSelected: false
+  Executions:
+    - Command: .\remove-onedrive.ps1
+      UsePowershell: true
+      IsLocalAsset: true
+      WorkingDirectory: powershell
+      
+- Name: Disable Unneeded Services
+  IsSelected: false
+  Executions:
+    - Command: .\disable-services.ps1
+      UsePowershell: true
+      IsLocalAsset: true
+      WorkingDirectory: powershell
+      
+- Name: Cleanup Windows
+  IsSelected: false
+  Executions:
+    - Command: .\cleanup-windows.ps1
+      UsePowershell: true
+      IsLocalAsset: true
+      WorkingDirectory: powershell
+      
+- Name: Set display scaling to 100% down from 125%
+  IsSelected: false
+  Executions:
+    - Command: control.exe
+      Arguments: control.exe /name Microsoft.Display /page pageAdvancedSettings
+      UsePowershell: true
+    - Command: control.exe
+      Arguments: control.exe /name Microsoft.Display /page pageAdvancedSettings /cmd ChangeDPI 100
+      UsePowershell: true

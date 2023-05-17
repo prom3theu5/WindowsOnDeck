@@ -1,0 +1,220 @@
+- Name: APU Chipset Drivers from Valve
+  Url: https://steamdeck-packages.steamos.cloud/misc/windows/drivers/Aerith%20Windows%20Driver_2302270303.zip
+  OutputPath: APU_Drivers.zip
+  InstallationCommands:
+    - Command: Expand-Archive
+      Arguments: ./APU_Drivers.zip -DestinationPath ./APU_Drivers -Force
+      UsePowershell: true
+    - Command: AMDSoftwareInstaller.exe
+      WorkingDirectory: APU_Drivers\GFX Driver_41.1.1.30310_230227a-388790E-2302270303\Bin64
+      UseProcessStart: true
+      
+- Name: Audio Drivers 1/2 from Valve (cs35l41)
+  Url: https://steamdeck-packages.steamos.cloud/misc/windows/drivers/cs35l41-V1.2.1.0.zip
+  OutputPath: Audio_Drivers_1.zip
+  InstallationCommands:
+    - Command: Expand-Archive
+      Arguments: ./Audio_Drivers_1.zip ./Audio_Drivers_1 -Force
+      UsePowershell: true
+    - Command: Start-Process
+      Arguments: PNPUtil.exe -ArgumentList "/add-driver ./Audio_Drivers_1/cs35l41-V1.2.1.0/cs35l41.inf /install" -Wait
+      UsePowershell: true
+      
+- Name: Audio Drivers 2/2 from Valve (NAU88L21)
+  Url: https://steamdeck-packages.steamos.cloud/misc/windows/drivers/NAU88L21_x64_1.0.6.0_WHQL%20-%20DUA_BIQ_WHQL.zip
+  OutputPath: Audio_Drivers_2.zip
+  InstallationCommands:
+    - Command: Expand-Archive
+      Arguments: ./Audio_Drivers_2.zip ./Audio_Drivers_2 -Force
+      UsePowershell: true
+    - Command: Start-Process
+      Arguments: PNPUtil.exe -ArgumentList "/add-driver `"./Audio_Drivers_2/NAU88L21_x64_1.0.6.0_WHQL - DUA_BIQ_WHQL/NAU88L21.inf`" /install" -Wait
+      UsePowershell: true
+      
+- Name: Wireless LAN Drivers from Windows Update
+  Url: https://catalog.s.download.windowsupdate.com/d/msdownload/update/driver/drvs/2022/11/05b73312-01e0-4e40-a991-93d11309b736_8cd43d4695c27a3f174b6e9c33034c100995e095.cab
+  OutputPath: WLAN_Drivers.cab
+  InstallationCommands:
+    - Command: New-Item
+      Arguments: ./WLAN_Drivers -ItemType Directory -ErrorAction SilentlyContinue
+      UsePowershell: true
+    - Command: Start-Process
+      Arguments: expand.exe -ArgumentList "-F:* ./WLAN_Drivers.cab ./WLAN_Drivers" -Wait
+      UsePowershell: true
+    - Command: Start-Process
+      Arguments: PNPUtil.exe -ArgumentList "/add-driver ./WLAN_Drivers/netrtwlane.inf" -Wait
+      UsePowershell: true
+      
+- Name: Bluetooth Drivers from Windows Update
+  Url: https://catalog.s.download.windowsupdate.com/d/msdownload/update/driver/drvs/2022/08/ad501382-9e48-4720-92c7-bcee5374671e_501f5f234304610bbbc221823de181e544c1bc09.cab
+  OutputPath: Bluetooth_Drivers.cab
+  InstallationCommands:
+    - Command: New-Item
+      Arguments: ./Bluetooth_Drivers -ItemType Directory -ErrorAction SilentlyContinue
+      UsePowershell: true
+    - Command: Start-Process
+      Arguments: expand.exe -ArgumentList "-F:* ./Bluetooth_Drivers.cab ./Bluetooth_Drivers" -Wait
+      UsePowershell: true
+    - Command: Start-Process
+      Arguments: PNPUtil.exe -ArgumentList "/add-driver ./Bluetooth_Drivers/Rtkfilter.inf" -Wait
+      UsePowershell: true
+      
+- Name: MicroSD Card Reader Drivers from Windows Update
+  Url: https://catalog.s.download.windowsupdate.com/c/msdownload/update/driver/drvs/2022/10/4f20ec00-bee5-4df2-873c-3a49cf4d4f8b_0aaf931a756473e6f8be1ef890fb60c283e9e82e.cab
+  OutputPath: MicroSD_Drivers.cab
+  InstallationCommands:
+    - Command: New-Item
+      Arguments: ./MicroSD_Drivers -ItemType Directory -ErrorAction SilentlyContinue
+      UsePowershell: true
+    - Command: Start-Process
+      Arguments: expand.exe -ArgumentList "-F:* ./MicroSD_Drivers.cab ./MicroSD_Drivers" -Wait
+      UsePowershell: true
+    - Command: Start-Process
+      Arguments: PNPUtil.exe -ArgumentList "/add-driver ./MicroSD_Drivers/bhtsddr.inf" -Wait
+      UsePowershell: true
+
+- Name: VC++ All in One Redistributable
+  Url: https://github.com/abbodi1406/vcredist/releases/download/v0.73.0/VisualCppRedist_AIO_x86_x64_73.zip
+  OutputPath: VCpp.zip
+  InstallationCommands:
+    - Command: Expand-Archive
+      Arguments: ./VCpp.zip -DestinationPath ./Vcpp -Force
+      UsePowershell: true
+    - Command: Start-Process
+      Arguments: ./Vcpp/VisualCppRedist_AIO_x86_x64.exe /ai -Wait
+      UsePowershell: true
+      
+- Name: DirectX Setup
+  Url: https://download.microsoft.com/download/1/7/1/1718CCC4-6315-4D8E-9543-8E28A4E18C4C/dxwebsetup.exe
+  OutputPath: DirectX.exe
+  InstallationCommands:
+    - Command: Start-Process
+      Arguments: ./DirectX.exe -ArgumentList "/Q" -Wait
+      UsePowershell: true
+
+- Name: DotNet 6.0
+  Url: https://download.visualstudio.microsoft.com/download/pr/38dca5f5-f10f-49fb-b07f-a42dd123ea30/335bb4811c9636b3a4687757f9234db9/dotnet-sdk-6.0.407-win-x64.exe
+  OutputPath: dotnet6.0_Setup.exe
+  InstallationCommands:
+    - Command: Start-Process
+      Arguments: ./dotnet6.0_Setup.exe -ArgumentList "/quiet /norestart" -Wait
+      UsePowershell: true
+      
+- Name: ViGEmBus Setup
+  Url: https://github.com/ViGEm/ViGEmBus/releases/download/v1.21.442.0/ViGEmBus_1.21.442_x64_x86_arm64.exe
+  OutputPath: ViGEmBus_Setup.exe
+  InstallationCommands:
+    - Command: Start-Process
+      Arguments: ./ViGEmBus_Setup.exe -ArgumentList "/qn /norestart" -Wait
+      UsePowershell: true
+
+- Name: RivaTuner Setup
+  Url: https://www.filecroco.com/download-file/download-rivatuner-statistics-server/14914/2360/
+  OutputPath: RivaTuner_Setup.exe
+  InstallationCommands:
+    - Command: Start-Process
+      Arguments: ./RivaTuner_Setup.exe -ArgumentList "/S" -Wait
+      UsePowershell: true
+  PostInstallConfiguration:
+    - TaskType: ScheduledTask
+      Name: RivaTuner
+      Description: Start RivaTuner at Login
+      Path: C:\Program Files (x86)\RivaTuner Statistics Server\RTSS.exe
+
+- Name: Steam Deck Tools
+  Url: https://github.com/ayufan/steam-deck-tools/releases/download/0.6.15/SteamDeckTools-0.6.15-portable.zip
+  OutputPath: SteamDeckTools.zip
+  InstallationCommands:
+    - Command: New-Item
+      Arguments: C:\DeckUtils -ItemType Directory -ErrorAction SilentlyContinue
+      UsePowershell: true
+    - Command: Expand-Archive
+      Arguments: ./SteamDeckTools.zip -Destination C:\DeckUtils\SteamDeckTools -Force
+      UsePowershell: true
+  PostInstallConfiguration:
+    - TaskType: CreateShortcut
+      Name: SteamController.lnk
+      Path: C:\DeckUtils\SteamDeckTools\SteamController.exe
+    - TaskType: CreateShortcut
+      Name: FanControl.lnk
+      Path: C:\DeckUtils\SteamDeckTools\FanControl.exe
+    - TaskType: CreateShortcut
+      Name: PerformanceOverlay.lnk
+      Path: C:\DeckUtils\SteamDeckTools\PerformanceOverlay.exe
+    - TaskType: CreateShortcut
+      Name: PowerControl.lnk
+      Path: C:\DeckUtils\SteamDeckTools\PowerControl.exe
+    - TaskType: Command
+      Command: Start-Process
+      Arguments: C:\DeckUtils\SteamDeckTools\FanControl.exe -ArgumentList "-run-on-startup"
+      UsePowershell: true
+    - TaskType: Command
+      Command: Start-Process
+      Arguments: C:\DeckUtils\SteamDeckTools\PerformanceOverlay.exe -ArgumentList "-run-on-startup"
+      UsePowershell: true
+    - TaskType: Command
+      Command: Start-Process
+      Arguments: C:\DeckUtils\SteamDeckTools\PowerControl.exe -ArgumentList "-run-on-startup"
+      UsePowershell: true
+    - TaskType: Command
+      Command: Start-Process
+      Arguments: C:\DeckUtils\SteamDeckTools\SteamController.exe -ArgumentList "-run-on-startup"
+      UsePowershell: true
+      
+- Name: EqualizerAPO
+  Url: https://sourceforge.net/projects/equalizerapo/files/latest/download
+  OutputPath: EqualizerAPO_Setup.exe
+  InstallationCommands:
+    - Command: Start-Process
+      Arguments: ./EqualizerAPO_Setup.exe -ArgumentList "/S" -Wait
+      UsePowershell: true
+    - Command: Copy-Item
+      Arguments: .\EqualiserApo_Config.txt -Destination "C:\Program Files\EqualizerAPO\config\config.txt"
+      WorkingDirectory: config
+      UsePowershell: true
+      IsLocalAsset: true
+
+- Name: EqualizerAPO VST Plugin
+  Url: https://github.com/werman/noise-suppression-for-voice/releases/download/v1.03/win-rnnoise.zip
+  OutputPath: win-rnnoise.zip
+  InstallationCommands:
+    - Command: Expand-Archive
+      Arguments: ./win-rnnoise.zip -DestinationPath "C:\Program Files\EqualizerAPO\VSTPlugins\" -Force
+      UsePowershell: true
+      
+- Name: Playnite Game Launcher
+  Url: https://github.com/JosefNemec/Playnite/releases/download/10.16/Playnite1016.exe
+  OutputPath: Playnite.exe
+  InstallationCommands:
+    - Command: Playnite.exe
+      UseProcessStart: true
+      
+- Name: Steam
+  Url: https://cdn.akamai.steamstatic.com/client/installer/SteamSetup.exe
+  OutputPath: SteamSetup.exe
+  InstallationCommands:
+    - Command: SteamSetup.exe
+      UseProcessStart: true
+      
+- Name: CRU - Custom Resolution Utility
+  Url: https://www.monitortests.com/download/cru/cru-1.5.2.zip
+  OutputPath: cru-1.5.2.zip
+  InstallationCommands:
+    - Command: New-Item
+      Arguments: C:\CRU -ItemType Directory -ErrorAction SilentlyContinue
+      UsePowershell: true
+    - Command: Expand-Archive
+      Arguments: ./cru-1.5.2.zip -Destination c:\cru -Force
+      UsePowershell: true
+  PostInstallConfiguration:
+    - TaskType: CreateShortcut
+      Name: CRU.lnk
+      Path: C:\CRU\CRU.exe
+      
+- Name: Ciphrays Custom Binary for CRU
+  Url: https://baldsealion.github.io/Steam-Deck-Ultimate-Windows-Guide/apps/CRU/Ciphrays-steamdeck-30-35-40-45-50-60_ex_res.bin?raw=true
+  OutputPath: Ciphrays-steamdeck-30-35-40-45-50-60_ex_res.bin
+  InstallationCommands:
+    - Command: Copy-Item
+      Arguments: ./Ciphrays-steamdeck-30-35-40-45-50-60_ex_res.bin -Destination "C:\CRU\steamdeck.bin"
+      UsePowershell: true

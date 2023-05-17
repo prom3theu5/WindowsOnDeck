@@ -1,0 +1,18 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="WindowsOnDeck.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="avares://WindowsOnDeck/Resources/Strings.axaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+    <Application.Styles>
+        <FluentTheme Mode="Dark" />
+        <StyleInclude Source="avares://WindowsOnDeck/Styles/ButtonStyles.axaml" />
+        <StyleInclude Source="avares://WindowsOnDeck/Styles/PanelStyles.axaml" />
+        <StyleInclude Source="avares://WindowsOnDeck/Styles/ImageStyles.axaml" />
+        <StyleInclude Source="avares://WindowsOnDeck/Styles/TextStyles.axaml" />
+    </Application.Styles>
+</Application>

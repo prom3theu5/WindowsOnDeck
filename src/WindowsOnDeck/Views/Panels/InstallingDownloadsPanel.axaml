@@ -1,0 +1,52 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:panels="clr-namespace:WindowsOnDeck.ViewModels.Panels"
+             x:Class="WindowsOnDeck.Views.Panels.InstallingDownloadsPanel"
+             x:CompileBindings="True"
+             x:DataType="panels:InstallingDownloadsPanelViewModel">
+    <Grid RowDefinitions="*,50" Margin="30,30,30,0">
+        
+        <StackPanel Grid.Row="0" Classes="vertical" VerticalAlignment="Center" HorizontalAlignment="Stretch" IsVisible="{Binding !InstallsFinished}">
+            <TextBlock Classes="body" HorizontalAlignment="Left" Foreground="#2FB82F" Text="{StaticResource Application.Title}" FontSize="20"/>
+            <TextBlock Classes="body" Text="{StaticResource Panel.InstallDownloads.Headline}" />
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Classes="body" Text="Current Item: " VerticalAlignment="Center" />
+                <TextBlock Classes="body" Text="{Binding CurrentInstall}" Foreground="#DD09F1" VerticalAlignment="Center" Margin="10,0,0,0" FontWeight="Heavy"/>
+            </StackPanel>
+			<ProgressBar Height="20" VerticalAlignment="Center" Margin="0,20,0,20" IsIndeterminate="True" />
+            <ListBox x:Name="LogsInstall" Items="{Binding LogMessages}" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="0,20,0,0" Padding="10"  MaxHeight="300"  AutoScrollToSelectedItem="True" IsVisible="{Binding !InstallsFinished}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding .}" HorizontalAlignment="Left" TextWrapping="Wrap" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="0" Classes="vertical" VerticalAlignment="Center" HorizontalAlignment="Stretch" IsVisible="{Binding InstallsFinished}">
+            <TextBlock Classes="body" HorizontalAlignment="Left" Foreground="#2FB82F" Text="{StaticResource Application.Title}" FontSize="20"/>
+            <TextBlock Classes="body" Text="{StaticResource Panel.InstallDownloads.Finished}" />
+            
+            <StackPanel Classes="vertical" VerticalAlignment="Center" HorizontalAlignment="Stretch" IsVisible="{Binding !ConfigurationFinished}">
+                <TextBlock Classes="body" Text="{StaticResource Panel.InstallDownloads.Configuring}" />
+                <ProgressBar Height="20" VerticalAlignment="Center" Margin="0,20,0,20" IsIndeterminate="True" />
+                <ListBox x:Name="LogsConfig" Items="{Binding LogMessages}" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="0,20,0,0" Padding="10"  MaxHeight="300" AutoScrollToSelectedItem="True" IsVisible="{Binding !ConfigurationFinished}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding .}" HorizontalAlignment="Left" TextWrapping="Wrap" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+            
+            <StackPanel Classes="vertical" VerticalAlignment="Center" HorizontalAlignment="Stretch" IsVisible="{Binding ConfigurationFinished}">
+                <TextBlock Classes="body" Text="{StaticResource Panel.InstallDownloads.ConfiguringFinished}" />
+            </StackPanel>
+        </StackPanel>
+        
+        <Button Grid.Row="1" Classes="next" Command="{Binding FinalPageCommand}" IsEnabled="{Binding ConfigurationFinished}" IsVisible="{Binding ConfigurationFinished}" />
+    </Grid>
+</UserControl>

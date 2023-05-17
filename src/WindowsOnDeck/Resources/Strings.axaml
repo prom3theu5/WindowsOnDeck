@@ -1,0 +1,22 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=System.Runtime">
+    <system:String x:Key="Application.Title">WINDOWS ON DECK</system:String>
+    <system:String x:Key="Application.Headline">Automatic configuration Tool for Windows 11 running on a Steam Deck.</system:String>
+    <system:String x:Key="Application.Disclaimer">This software is provided 'as is' without any warranty of any kind. The author and the distributor of this software are not liable for any damage or loss that may occur to your machine or data as a result of using this software. You are solely responsible for any risks associated with installing and running this software on your machine. Tick the box below to agree to these terms.</system:String>
+    <system:String x:Key="Panel.SelectDownloads.Headline">Select the components you wish to download</system:String>
+    <system:String x:Key="Panel.ProcessDownloads.Headline">Downloading Required Files</system:String>
+    <system:String x:Key="Panel.ProcessDownloads.Finished">All Downloads Finished. Click 'Install' to begin installing.</system:String>
+    <system:String x:Key="Panel.SelectWindowsTweaks.Headline">Select the Windows Tweaks to Apply</system:String>
+    <system:String x:Key="Panel.ProcessWindowsTweaks.Headline">Applying Selected Tweaks to Windows</system:String>
+    <system:String x:Key="Panel.ProcessWindowsTweaks.Finished">Finished Applying Tweaks. Click 'Select Downloads' to begin selecting applications and drivers to downloaded.</system:String>
+    <system:String x:Key="Panel.InstallDownloads.Headline">Installing all selected downloads, with automatic settings applied.</system:String>
+    <system:String x:Key="Panel.InstallDownloads.Finished">Finished installing selected applications.</system:String>
+	<system:String x:Key="Panel.InstallDownloads.Configuring">Now Configuring installed applications.</system:String>
+	<system:String x:Key="Panel.InstallDownloads.ConfiguringFinished">Finished Configuration of applications. Click 'Next' to continue.</system:String>
+	<system:String x:Key="Panel.Error.Occured">An Error Occured processing the command. The application will now exit.</system:String>
+	<system:String x:Key="Panel.Final.Coffee">Thanks for using WindowsOnDeck. Hopefully it was beneficial to you. If you've like to buy me a coffee to support, use the following link:</system:String>
+	<system:String x:Key="Panel.Monzo.Me">https://monzo.me/davesekula</system:String>
+    <system:String x:Key="Checkbox.AcceptTerms">I Accept These Terms</system:String>
+    <system:String x:Key="Buttons.Next">Next</system:String>
+</ResourceDictionary>

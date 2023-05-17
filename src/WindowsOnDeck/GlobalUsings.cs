@@ -1,0 +1,33 @@
+// Global using directives
+
+global using System;
+global using System.Collections.Generic;
+global using System.Collections.ObjectModel;
+global using System.Diagnostics.CodeAnalysis;
+global using System.IO;
+global using System.Linq;
+global using System.Net.Http;
+global using System.Threading;
+global using System.Threading.Tasks;
+global using Avalonia;
+global using Avalonia.Controls;
+global using Avalonia.Controls.ApplicationLifetimes;
+global using Avalonia.Logging;
+global using Avalonia.Markup.Xaml;
+global using CliWrap;
+global using CliWrap.EventStream;
+global using Prism.DryIoc;
+global using Prism.Ioc;
+global using Prism.Mvvm;
+global using Prism.Regions;
+global using WindowsOnDeck.Enums;
+global using WindowsOnDeck.Extensions;
+global using WindowsOnDeck.Interfaces;
+global using WindowsOnDeck.Models;
+global using WindowsOnDeck.Services;
+global using WindowsOnDeck.ViewModels;
+global using WindowsOnDeck.ViewModels.Panels;
+global using WindowsOnDeck.Views;
+global using WindowsOnDeck.Views.Panels;
+global using CommunityToolkit.Mvvm.Input;
+global using CommunityToolkit.Mvvm.ComponentModel;

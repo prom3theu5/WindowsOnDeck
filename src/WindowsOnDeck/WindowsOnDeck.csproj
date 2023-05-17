@@ -1,0 +1,101 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net7.0-windows</TargetFramework>
+        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+        <Nullable>enable</Nullable>
+        <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+        <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+        <ApplicationIcon>Assets\logo.ico</ApplicationIcon>
+        <IsPackable>false</IsPackable>
+        <Authors>Dave Sekula: Prom3theu5</Authors>
+        <Description>Automatic setup of drivers and apps on Steam Deck for Windows 11.</Description>
+        <Company>David Sekula: Prom3theu5</Company>
+        <AssemblyVersion>1.0.0</AssemblyVersion>
+        <FileVersion>1.0.0</FileVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectCapability Include="Avalonia" />
+        <TrimmerRootAssembly Include="Avalonia.Themes.Fluent" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia" Version="0.10.19" />
+        <PackageReference Include="Avalonia.Desktop" Version="0.10.19" />
+        <PackageReference Include="Avalonia.Skia.Lottie" Version="0.10.15-preview.65" />
+        <PackageReference Include="CliWrap" Version="3.6.1" />
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
+        <PackageReference Include="DK.WshRuntime" Version="4.1.3.201115164" />
+        <PackageReference Include="Prism.Avalonia" Version="8.1.97.2" />
+        <PackageReference Include="Prism.DryIoc.Avalonia" Version="8.1.97.2" />
+        <PackageReference Include="TaskScheduler" Version="2.10.1" />
+        <PackageReference Include="YamlDotNet" Version="13.1.0" />
+        
+        <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.19" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Views\MainWindow.axaml.cs">
+        <DependentUpon>MainWindow.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Panels\ErrorPanel.axaml.cs">
+        <DependentUpon>ErrorPanel.axaml</DependentUpon>
+      </Compile>
+      <Compile Update="Views\Panels\IntroPanel.axaml.cs">
+        <DependentUpon>IntroPanel.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Panels\ProcessDownloadsPanel.axaml.cs">
+        <DependentUpon>ProcessDownloadsPanel.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Panels\SelectDownloadsPanel.axaml.cs">
+        <DependentUpon>SelectDownloadsPanel.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Panels\SelectWindowsTweaksPanel.axaml.cs">
+        <DependentUpon>SelectWindowsTweaksPanel.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Panels\ProcessWindowsTweaksPanel.axaml.cs">
+        <DependentUpon>ProcessWindowsTweaksPanel.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Panels\InstallingDownloadsPanel.axaml.cs">
+        <DependentUpon>InstallingDownloadsPanel.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Panels\FinalPanel.axaml.cs">
+        <DependentUpon>FinalPanel.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+        <AvaloniaXaml Remove="Resources\*.axaml" />
+        <AvaloniaXaml Remove="Styles\*.axaml" />
+        <AvaloniaResource Include="Assets\*.png" />
+        <AvaloniaResource Include="Assets\Lottie\**" />
+        <AvaloniaResource Include="Resources\*.axaml" />
+        <AvaloniaResource Include="Styles\*.axaml" />
+        <None Update="Assets\*.yaml">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+            <ExcludeFromSingleFile>false</ExcludeFromSingleFile>
+        </None>
+        <None Update="Assets\config\**">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+            <ExcludeFromSingleFile>false</ExcludeFromSingleFile>
+        </None>
+        <None Update="Assets\powershell\**">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+            <ExcludeFromSingleFile>false</ExcludeFromSingleFile>
+        </None>
+    </ItemGroup>
+</Project>

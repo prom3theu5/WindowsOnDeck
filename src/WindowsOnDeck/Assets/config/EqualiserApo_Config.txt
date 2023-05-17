@@ -1,0 +1,10 @@
+﻿Preamp: -5 dB
+Filter 4: ON LSC 0.5 dB Fc 140 Hz Gain 6.5 dB
+Filter 6: ON PK Fc 750 Hz Gain 3 dB Q 4.1
+Filter 7: ON PK Fc 750 Hz Gain -9.3 dB Q 5.2
+Filter 8: ON PK Fc 221 Hz Gain 9.2 dB Q 1.29
+Filter 9: ON PK Fc 1257 Hz Gain 2.4 dB Q 1.644
+Filter 10: ON PK Fc 8552 Hz Gain -1 dB Q 1
+Filter 11: ON PK Fc 12648 Hz Gain -5.6 dB Q 2.2
+Device: Micrófono AMD Audio Device
+VSTPlugin: Library win-rnnoise\vst\rnnoise_stereo.dll ChunkData "VkMyIdEAAAA8P3htbCB2ZXJzaW9uPSIxLjAiIGVuY29kaW5nPSJVVEYtOCI/PiA8Uk5Ob2lzZT48UEFSQU0gaWQ9InZhZF9ncmFjZV9wZXJpb2QiIHZhbHVlPSIyMC4wIi8+PFBBUkFNIGlkPSJ2YWRfcmV0cm9hY3RpdmVfZ3JhY2VfcGVyaW9kIiB2YWx1ZT0iMS4wIi8+PFBBUkFNIGlkPSJ2YWRfdGhyZXNob2xkIiB2YWx1ZT0iMC44NDk5OTk5NjQyMzcyMTMxIi8+PC9STk5vaXNlPgA="

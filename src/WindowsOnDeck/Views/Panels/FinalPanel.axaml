@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:panels="clr-namespace:WindowsOnDeck.ViewModels.Panels"
+             x:CompileBindings="True"
+             x:DataType="panels:FinalPanelViewModel"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="WindowsOnDeck.Views.Panels.FinalPanel">
+    <Grid ColumnDefinitions="*,*" RowDefinitions="*,50">
+		<Viewbox Grid.Column="0" Grid.Row="0">
+			<Lottie Name="Lottie"
+			        Path="{Binding Animation}"
+					RepeatCount="-1"
+					/>
+		</Viewbox>
+        <StackPanel Grid.Row="0" Grid.Column="1" Classes="vertical" VerticalAlignment="Center">
+            <TextBlock Classes="body" HorizontalAlignment="Left" Foreground="#2FB82F" Text="{StaticResource Application.Title}" FontSize="20"/>
+            <TextBlock Classes="body" Text="{StaticResource Application.Headline}" />
+            <TextBlock Classes="body" FontWeight="Heavy" Foreground="#DD09F1" Text="{StaticResource Panel.Final.Coffee}" />
+            <Button Command="{Binding MonzoCommand}" Background="#3366cc">
+	            <TextBlock Classes="body" FontWeight="Bold" Foreground="White" Text="{StaticResource Panel.Monzo.Me}" />
+            </Button>
+        </StackPanel>
+        <Button Grid.Row="1" Grid.Column="1" Classes="next" Command="{Binding ExitAndRestartCommand}" Content="Exit and Reboot" Width="180" Background="Crimson" Foreground="White" />
+    </Grid>
+</UserControl>
