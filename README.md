@@ -1,3 +1,5 @@
+<img src="https://github.com/prom3theu5/WindowsOnDeck/assets/1518610/a0a3f9de-6589-4b15-8345-eb96abd16236" width="200" />
+
 # WindowsOnDeck
 
 ## About
